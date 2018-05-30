@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <div class="container">
+    <p class="font-weight-bold text-capitalize font-italic">Hello {{session.username}}, this is your portfolio.</p>
+    </div>   
+    <hr>
+    
+    <div class="container">
+        <p class="font-weight-normal">Transactions done with Markit API:</p>
+		<table class="portfolio">
+			<tr>		
+				<th class="portfolio-head">Company name</th>
+				<th class="portfolio-head">Company symbol</th>
+				<th class="portfolio-head">Last Price</th>
+                <th class="portfolio-head">Quantity Purchased</th>
+                <th class="portfolio-head">Quantity Sold</th>
+                <th class="portfolio-head">Total Quantity</th>
+                <th class="portfolio-head">API Name</th>				
+        </tr>
+			{% for i in transaction %}
+			<tr>
+				
+				<td class="portfolio-data">{{i.c_name}}</td>
+				<td class="portfolio-data">{{i.c_symbol}}</td>
+				<td class="portfolio-data">{{i.c_lastprice}}</td>
+				<td class="portfolio-data">{{i.c_quantity_purchased}}</td>
+                <td class="portfolio-data">{{i.c_quantity_sold}}</td>
+                <td class="portfolio-data">{{i.c_quantity_total}}</td>
+                <td class="portfolio-data">{{i.api_name}}</td>
+				
+            </tr>
+
+            {% endfor %}
+        </table>
+    </div>
+<hr>
+    <div class="container">
+        <p class="font-weight-normal">Transactions done with AlphaVantage API:</p>
+            <table class="portfolio">
+                <tr>		
+                    <th class="portfolio-head">Company symbol</th>
+                    <th class="portfolio-head">Last Price</th>
+                    <th class="portfolio-head">Quantity Purchased</th>
+                    <th class="portfolio-head">Quantity Sold</th>
+                    <th class="portfolio-head">Total Quantity</th>
+                    <th class="portfolio-head">API Name</th>				
+                    </tr>
+    
+
+            {% for i in av_transaction %}
+			<tr>				
+				<td class="portfolio-data">{{i.c_symbol}}</td>
+				<td class="portfolio-data">{{i.c_lastprice}}</td>
+                <td class="portfolio-data">{{i.c_quantity_purchased}}</td>
+                <td class="portfolio-data">{{i.c_quantity_sold}}</td>
+                <td class="portfolio-data">{{i.c_quantity_total}}</td>
+                <td class="portfolio-data">{{i.api_name}}</td>
+				
+			</tr>
+            {% endfor %}
+
+            </table>
+    </div>
+
+<hr>
+{% endblock %}

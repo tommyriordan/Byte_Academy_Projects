@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<hr>
+<div class="container">
+	<h6 class="font-weight-bold border">Current Balance: $ {{u_balance}} <style> h6,small {float :right;} </style></h6>
+</div>
+		
+<div class="container">
+	<form action="/av_buy" method="POST">
+		<table>
+			<tr>      
+				<div class="form-group container">
+					<td> <label class="font-weight-bold ">Search for company symbol:</label> </td>
+                    <td> <input type="text" name="symbol" class="form-control offset-1" placeholder="Enter ticker symbol." required> </td>
+                    <tr>
+                    <td> <label class="font-weight-bold ">Enter number of shares to buy:</label> </td>
+                    <td> <input type="number" name="quantity" class="form-control offset-1" placeholder="Enter no of shares." required> </td>
+                    </tr>
+					<td> <button type="submit" class="btn btn-dark btn-sm ">Buy shares </button> </td>
+				</div>
+		</table>
+		<br>
+	</form>
+</div>
+
+<div class="container">	
+		<table class="portfolio">
+			<tr>		
+				<th class="portfolio-head">Company symbol</th>
+				<th class="portfolio-head">Last Price</th>
+				<th class="portfolio-head">Quantity Purchased</th>
+				<th class="portfolio-head">Total Quantity</th>
+				<th class="portfolio-head">Current Total</th>				
+			</tr>
+			{% for i in transaction %}
+			<tr>
+				<td class="portfolio-data">{{i.c_symbol}}</td>
+				<td class="portfolio-data">{{i.c_lastprice}}</td>
+				<td class="portfolio-data">{{i.c_quantity_purchased}}</td>
+				<td class="portfolio-data">{{i.c_quantity_total}}</td>
+				<td class="portfolio-data">{{i.c_current_purchase}}</td>				
+			</tr>
+			{% endfor %}
+		</table>
+</div>
+
+{% endblock %} 

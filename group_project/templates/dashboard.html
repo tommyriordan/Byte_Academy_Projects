@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container">
+    <p class="font-weight-bold text-capitalize font-italic">Hello {{session.username}}, welcome to protocol.Inc</p>
+</div> 
+<hr>
+    <p class="font-weight-bold col-2 offset-5">Select a trading API</p>
+        <ul class="col-2 offset-5">
+            <li><a href="/markit">Markit API</a></li>
+            <li><a href="/alphavantage">Alphavantage API</a></li>
+
+        </ul>
+{% endblock %}

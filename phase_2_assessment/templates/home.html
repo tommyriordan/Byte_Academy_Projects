@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <div class="container-fluid text-center ">
+        <h2>chickensoup.co</h2>
+        <p class="lead font-weight-normal">We create events...</p>
+        
+        {% if session.logged_in == NULL %}
+            <a href="/register" class="btn btn-dark col-2">Sign Up</a>
+            
+        {% endif %}            
+    </div>
+{% endblock %}
