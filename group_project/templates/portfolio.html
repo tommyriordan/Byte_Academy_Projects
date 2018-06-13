@@ -2,8 +2,12 @@
 
 {% block body %}
     <div class="container">
-    <p class="font-weight-bold text-capitalize font-italic">Hello {{session.username}}, this is your portfolio.</p>
-    </div>   
+        <p class="font-weight-bold text-capitalize font-italic">Hello {{session.username}}, this is your portfolio.</p>
+    </div>
+    <div class="container">
+        <h6 class="font-weight-bold border">Current Balance: $ {{u_balance}} <style> h6,small {float :right;} </style></h6>
+    </div>
+       
     <hr>
     
     <div class="container">

@@ -186,7 +186,8 @@ def logout():
 @app.route("/dashboard")
 @is_logged_in
 def dashboard():
-    return render_template("dashboard.html")
+    u_balance = User.query.filter_by(username=session['username']).first().balance
+    return render_template("dashboard.html",u_balance=u_balance)
 
 
 @app.route("/markit")
@@ -238,10 +239,11 @@ def getquote():
 @is_logged_in
 def portfolio():
     id = User.query.filter_by(username=session['username']).first().id
+    u_balance = User.query.filter_by(username=session['username']).first().balance
     transaction = Transaction.query.filter_by(t_id=id).all()
     av_transaction = av_Transaction.query.filter_by(t_id=id).all()
 
-    return render_template('portfolio.html',transaction=transaction, av_transaction=av_transaction)
+    return render_template('portfolio.html',transaction=transaction, av_transaction=av_transaction, u_balance=u_balance)
 
 
 
@@ -431,6 +433,7 @@ def av_buy():
 
             quantity = request.form['quantity']
             total = (price*int(quantity))
+            total = round(total, 2)
 
             id = User.query.filter_by(username=session['username']).first().id
             transaction = av_Transaction.query.filter_by(t_id=id, c_symbol=request.form['symbol']).first()
@@ -514,6 +517,7 @@ def av_sell():
             quantity = (request.form['quantity'])
             quantity = request.form['quantity']
             total = (price*int(quantity))
+            total = round(total, 2)
 
             id = User.query.filter_by(username=session['username']).first().id
             transaction = av_Transaction.query.filter_by(t_id=id, c_symbol=request.form['symbol']).first()

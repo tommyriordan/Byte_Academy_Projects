@@ -3,7 +3,11 @@
 {% block body %}
 <div class="container">
     <p class="font-weight-bold text-capitalize font-italic">Hello {{session.username}}, welcome to protocol.Inc</p>
-</div> 
+</div>
+<div class="container">
+    <h6 class="font-weight-bold border">Current Balance: $ {{u_balance}} <style> h6,small {float :right;} </style></h6>
+</div>
+
 <hr>
     <p class="font-weight-bold col-2 offset-5">Select a trading API</p>
         <ul class="col-2 offset-5">
